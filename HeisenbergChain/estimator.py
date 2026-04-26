@@ -54,12 +54,12 @@ class MyEstimator :
             elif p == 'Y':
                 circuit.sdg(i)
                 circuit.h(i)
-        circuit.measure_all()
+        assert circuit.qregs[0].name == 'data' and circuit.cregs[0].name == 'meas'
+        circuit.measure(circuit.qregs[0], circuit.cregs[0])
         return circuit
 
 
     def submit_sampler_jobs(self):
-        # 1. Group commuting Pauli operators to reduce circuit executions
         if self.file_path.is_file() :
             print(f"Sampler jobs already submitted. Result in {self.file_path}.")
             return
@@ -114,7 +114,7 @@ class MyEstimator :
             expectation = 0.0
             for bit_string, freq in counts.items() :
                 parity = 1
-                for b, m in zip(bit_string, pauli_mask) :
+                for b, m in zip(reversed(bit_string), reversed(pauli_mask)) :
                     if m == '1' and b == '1' :
                         parity = -parity
                 prob = freq / total_shots
