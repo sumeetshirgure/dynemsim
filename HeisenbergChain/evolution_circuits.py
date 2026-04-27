@@ -217,18 +217,18 @@ def dynamic_evolve(n, h, time, steps, mcm=True, stretch_dd=False, folds=1) :
     for step in range(steps) :
         circuit.compose(
                 dynamic_trotter_step(
-                    n, h, dt, mcm=mcm, stretch_dd=stretch_dd, stretch_id=f'{step}'),
+                    n, h, dt, mcm=mcm, stretch_dd=stretch_dd, stretch_id=f'U_{step}_0'),
                 inplace=True)
 
-    for fold in range(folds//2) :
+    for fold in range(1, 1+folds//2) :
         for step in range(steps) :
             circuit.compose(
                     inverse_dynamic_trotter_step(
-                        n, h, dt, mcm=mcm, stretch_dd=stretch_dd, stretch_id=f'{step}'),
+                        n, h, dt, mcm=mcm, stretch_dd=stretch_dd, stretch_id=f'I_{step}_{fold}'),
                     inplace=True)
             circuit.compose(
                     dynamic_trotter_step(
-                        n, h, dt, mcm=mcm, stretch_dd=stretch_dd, stretch_id=f'{step}'),
+                        n, h, dt, mcm=mcm, stretch_dd=stretch_dd, stretch_id=f'U_{step}_{fold}'),
                     inplace=True)
 
 
