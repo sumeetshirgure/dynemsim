@@ -14,5 +14,16 @@ We investigate the effects of DD, ZNE and both DD+ZNE on their effectiveness
 in mitigating the errors induced from mid-circuit measurements and feedforward
 operations.
 
-If you found this useful, please cite our paper.
-(Paper link coming soon.)
+If you found this useful, please cite our paper :
+
+```
+@misc{shirgure2026errormitigationdynamiccircuits,
+      title={Error Mitigation in Dynamic Circuits for Hamiltonian Simulation}, 
+      author={Sumeet Shirgure and Siyuan Niu},
+      year={2026},
+      eprint={2605.05256},
+      archivePrefix={arXiv},
+      primaryClass={quant-ph},
+      url={https://arxiv.org/abs/2605.05256}, 
+}
+```
